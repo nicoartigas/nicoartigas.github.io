@@ -14,8 +14,15 @@ body {
 }
 
 /* Sass */ 
-$colorPrincipal: black;
 
+
+$estilos: (
+    negro: black,
+    gris: gray,
+    rojo: red,
+    blanco: white,
+);
+ 
 html {
     font-size: 15px;
     height: 100%;
@@ -23,7 +30,7 @@ html {
 
 #container{
     background-image: url("../image/flores\ footer.jpg");
-    background-color: black;
+    background-color: map-get($estilos, black);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-position: left;
     background: #fff;
@@ -50,13 +57,15 @@ nav ul li {
   
 }
 /* anidado con Scss */
+/*extend*/
 .flex-container { 
     display: flex;
     justify-content:center;
     align-items: center;
     position:initial; 
     letter-spacing: 5px;
- div{
+ div{   
+        @extend .flex-container;
         flex-basis: 100%;
         margin: 5px;
         height: 10px;
@@ -66,7 +75,16 @@ nav ul li {
  
 /* Galeria */
 
+/*mixing*/
+@mixin img-size($height,$width) {
+    height: $height;
+    width: $width;
+   
+    
+}
+
 .container {
+    @include img-size(400px,200px);
     background: none;
     display: grid;
     justify-items: center;
@@ -159,8 +177,8 @@ audio{
 }
 
 h1{ 
-    display: flex;
-    background-color: $colorPrincipal;
+    display: grid;
+    background-color: map-get($estilos, rgb);
     background-position: center;
     flex-direction: row;
     justify-content: center;
@@ -178,7 +196,7 @@ h1{
 fieldset{
    
     font-family: oswald;
-    background-color: black;
+    background-color: map-get($estilos, black );
     background-position: 25%;
     color: rgb(241, 239, 239);
     font-size: 35px;
@@ -191,7 +209,7 @@ fieldset{
 
 p {
     display: flex;
-    background:rgb(8, 8, 8);
+    background: map-get($estilos,black)(8, 8, 8);
     background-position: center;
     flex-direction: row;
     width: 70%;
@@ -226,7 +244,7 @@ p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(36, 39, 44);
     font-size: 16px;
-    color: rgb(214, 214, 214);
+    color:map-get($estilos,white)(214, 214, 214);
     padding: 5px;
     width: 100vw;
     text-align: justify;
